@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-apk --update add autoconf make gcc libc-dev nginx git
+apk --update add autoconf make gcc libc-dev nginx git zlib-dev
 
 EXPECTED_COMPOSER_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig)
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -20,7 +20,7 @@ rm composer-setup.php
 
 composer global require hirak/prestissimo
 
-docker-php-ext-install pdo_mysql json opcache
+docker-php-ext-install pdo_mysql json opcache zip
 
 pecl install xdebug-2.6.0alpha1
 
